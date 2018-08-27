@@ -4,19 +4,6 @@ const {expect} = require('chai');
 
 const calculateNextState = require('../src/calculator.js');
 
-
-//var s = null;
-
-//var a = ["1","2","+","4","3","=","+","1","=","=","=","5","+","-","*","2","="];
-//var a = ["1","2","+","3","+","1","*","4","=","=","5","+","-","*","2","="];
-//var a = ["+","1"];
-
-// for (var i in a) {
-//     s = calculateNextState(s, a[i]);
-//     //console.log(s);
-//     console.log(JSON.parse(s).display)
-// }
-
 function longCalculation(myString){
     let s = null, i;
     for (i in myString) {
@@ -34,17 +21,17 @@ describe('calculateNextState', function() { //empty
         expect(temp.display).to.equal("")
     });
 
-    it('should ignore request', () => { //1
+    it('should ignore request', () => {
         temp = JSON.parse(calculateNextState(null, "*"));
         expect(temp.display).to.equal("")
     });
 
-    it('should return 1 digit', () => { //1
+    it('should return 1 digit', () => {
         temp = JSON.parse(calculateNextState(null, "1"));
         expect(temp.display).to.equal("1")
     });
 
-    it('should return concatenation of first 2 digits', () => { //12
+    it('should return concatenation of first 2 digits', () => {
         temp = JSON.parse(longCalculation("12"));
         expect(temp.display).to.equal("12");
     });
@@ -55,6 +42,11 @@ describe('calculateNextState', function() { //empty
     });
 
     it('should return second number after operator', () => {
+        temp = JSON.parse(longCalculation("1+2"));
+        expect(temp.display).to.equal("2")
+    });
+
+    it('should return concatenation of second number after operator', () => {
         temp = JSON.parse(longCalculation("12+34"));
         expect(temp.display).to.equal("34")
     });
@@ -94,4 +86,18 @@ describe('calculateNextState', function() { //empty
         expect(temp.display).to.equal("-20")
     });
 
+    it('should return answer according to the insertion order', () => {
+        temp = JSON.parse(longCalculation("1+1*2="));
+        expect(temp.display).to.equal("4")
+    });
+
+    it('should ignore all operators but the last one', () => {
+        temp = JSON.parse(longCalculation("5+-*2="));
+        expect(temp.display).to.equal("10")
+    });
+
+    it('should work with equal in the middle of calculation', () => {
+        temp = JSON.parse(longCalculation("10=+5="));
+        expect(temp.display).to.equal("15")
+    });
 });

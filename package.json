@@ -12,7 +12,8 @@
 	},
 	"devDependencies": {},
 	"scripts": {
-		"test": "./node_modules/mocha/bin/mocha",
+		"unit": "./node_modules/mocha/bin/mocha ./test/unit_tests.js",
+		"int": "./node_modules/mocha/bin/mocha ./test/int_tests.js",
 		"start": "node ./src/server.js"
 	},
 	"keywords": [],
