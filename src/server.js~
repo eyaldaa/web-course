@@ -11,7 +11,9 @@ app.post('/calculate', function(req, res) {
 		state = JSON.stringify(state);
 	}
 	var input = req.body['input'];
-	
+	console.log(state);
+	console.log(input)
+	console.log();
 	var result = calculateNextState(state, input);
 
 	res.json(JSON.parse(result))
