@@ -5,10 +5,11 @@
 	"description": "",
 	"main": "./src/server.js",
 	"dependencies": {
+		"body-parser": "",
 		"chai": "^4.1.2",
+		"chai-http": "^4.0.0",
 		"express": "^4.16.3",
-		"mocha": "^5.2.0",
-		"body-parser": ""
+		"mocha": "^5.2.0"
 	},
 	"devDependencies": {},
 	"scripts": {
