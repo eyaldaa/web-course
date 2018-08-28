@@ -1,0 +1,32 @@
+version: '3'
+services:
+    redis:
+        image: "redis:alpine"
+    user-service:
+        image: "webdevtoolsandtech/user-service"
+        environment:
+            - REDIS_ADDRESS=redis:6379
+        depends_on:
+            - redis
+    currency-calculator:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+    currency-frontend:
+        image: "webdevtoolsandtech/currency-frontend"
+    currency-backend:
+        image: "webdevtoolsandtech/currency-backend"
+        environment:
+            - REDIS_ADDRESS=redis:6379
+            - SESSION_SECRET="lalala"
+            - USER_SERVICE_ADDRESS=user-service:80
+            - FRONTEND_ADDRESS=currency-frontend:80
+            - CALCULATOR_ADDRESS=currency-calculator:3000
+        ports:
+            - "8080:80"
+        depends_on:
+            - redis
+            - currency-calculator
+            - user-service
