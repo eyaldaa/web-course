@@ -1,6 +1,0 @@
-version: '1'
-services:
-	web-course-app:
-		image: web-course-app:latest
-		ports:
-			- "3000:3000"
