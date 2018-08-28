@@ -1,17 +1,17 @@
 # web-course
 
-* make sure you have the following libraries/packages installed:
+* Clone the git repository and make sure you have the following libraries/packages installed with "npm install":
   - nodejs + npm
   - mocha
   - chai
   - chai-http
   - docker
+  - docker-compose
 
 # Instructions: 
 
 [type = in terminal]
 
-0. Clone the git repository
 1. To run unit tests: type in main folder "npm run-script unit"
 2. To run web server: type in main folder "npm start"
 3. To run integration tests: type in main folder "npm run-script int" (make sure the server is up with "npm start")
